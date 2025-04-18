@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe App</title>
+     <link rel="icon" href="images/Bk_logo.png" type="image/favicon.png">
+    <link rel="stylesheet" href="Recipe_app.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Additional Styles for Search Icon */
+        .search-container {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+            margin: 20px auto;
+        }
+        
+        .search-container input {
+            width: 100%;
+            padding: 10px 30px 10px 10px; /* Adjusted padding to make space for the icon */
+            border: 1px solid #ccc;
+            border-radius: 30px;
+            font-size: 16px;
+        }
+        
+        .search-container i {
+            position: absolute;
+            top: 50%;
+            right: 10px; /* Positioning icon to the right */
+            transform: translateY(-50%);
+            font-size: 18px;
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+<div class="background-circles">
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+</div>
+
+<header>
+    <h1>Recipe App</h1>
+    <nav>
+        <ul>
+            <li><a href="#home"><i class="fa fa-home"></i> Home</a></li>
+            <li><a href="#recipes"><i class="fa fa-utensils"></i> Recipes</a></li>
+            <li><a href="#search"><i class="fa fa-search"></i> Search</a></li>
+        </ul>
+    </nav>
+</header>
+
+<section class="search" id="search">
+    <div class="search-container">
+        <input type="text" id="search-bar" placeholder="Search for recipes..." onkeyup="searchRecipes()">
+        <i class="fa fa-search"></i> <!-- Icon placed on the right -->
+    </div>
+</section>
+
+<section class="recipe-list" id="recipes">
+    <div class="recipe-card">
+        <div class="recipe-card-inner">
+            <div class="recipe-card-front">
+             <h3>Spaghetti Carbonara</h3>
+                <img src="images/Saptagati.jpg" alt="Recipe 1">
+                
+            </div>
+            <div class="recipe-card-back">
+                <p>A classic Italian pasta dish made with eggs, cheese, pancetta, and pepper.</p>
+                <button onclick="openRecipeDetails('Spaghetti Carbonara')">View Recipe</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Adding 9 more recipe cards -->
+    <div class="recipe-card">
+        <div class="recipe-card-inner">
+            <div class="recipe-card-front">
+               <h3>Chicken Curry</h3>
+                <img src="images/chicken Curry.jpg" alt="Recipe 2">
+               
+            </div>
+            <div class="recipe-card-back">
+                <p>A flavorful and spicy dish made with tender chicken and a rich curry sauce.</p>
+                <button onclick="openRecipeDetails('Chicken Curry')">View Recipe</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="recipe-card">
+        <div class="recipe-card-inner">
+            <div class="recipe-card-front">
+              <h3>Vegetable Stir Fry</h3>
+                <img src="images/Vegetable Stir Fry.jpg" alt="Recipe 3">
+        </div>
+            <div class="recipe-card-back">
+                <p>A healthy, quick, and colorful stir fry with a variety of vegetables.</p>
+                <button onclick="openRecipeDetails('Vegetable Stir Fry')">View Recipe</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="recipe-card">
+        <div class="recipe-card-inner">
+            <div class="recipe-card-front">
+               <h3>Grilled Salmon</h3>
+                <img src="images/Grilled Salmon.jpg" alt="Recipe 4">
+                </div>
+            <div class="recipe-card-back">
+                <p>Delicious grilled salmon with a hint of lemon and herbs.</p>
+                <button onclick="openRecipeDetails('Grilled Salmon')">View Recipe</button>
+            </div>
+        </div>
+    </div><br>
+
+    <div class="recipe-card">
+        <div class="recipe-card-inner">
+            <div class="recipe-card-front">
+             <h3>Beef Tacos</h3>
+                <img src="images/Beef Tacos.jpg" alt="Recipe 5">
+               </div>
+            <div class="recipe-card-back">
+                <p>Mexican-style beef tacos with fresh toppings.</p>
+                <button onclick="openRecipeDetails('Beef Tacos')">View Recipe</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="recipe-card">
+        <div class="recipe-card-inner">
+            <div class="recipe-card-front">
+              <h3>Caesar Salad</h3>
+                <img src="images/Caesar Salad.jpg" alt="Recipe 6">
+               </div>
+            <div class="recipe-card-back">
+                <p>Classic Caesar salad with homemade dressing.</p>
+                <button onclick="openRecipeDetails('Caesar Salad')">View Recipe</button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="recipe-card">
+        <div class="recipe-card-inner">
+            <div class="recipe-card-front">
+                <h3>Margherita Pizza</h3>
+                <img src="images/Margherita Pizza.jpg" alt="Recipe 7">
+            </div>
+            <div class="recipe-card-back">
+                <p>Traditional Italian Margherita pizza with fresh mozzarella and basil.</p>
+                <button onclick="openRecipeDetails('Margherita Pizza')">View Recipe</button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="recipe-card">
+        <div class="recipe-card-inner">
+            <div class="recipe-card-front">
+                  <h3>Chocolate Cake</h3>
+                <img src="images/Chocolate Cake.jpg" alt="Recipe 8">
+              </div>
+            <div class="recipe-card-back">
+                <p>Rich and moist chocolate cake with a creamy frosting.</p>
+                <button onclick="openRecipeDetails('Chocolate Cake')">View Recipe</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="recipe-details" class="recipe-details">
+    <div class="recipe-detail-content">
+        <h2 id="recipe-name"></h2>
+        <img id="recipe-image" src="" alt="">
+        <p id="recipe-description"></p>
+        <button onclick="closeRecipeDetails()">Close</button>
+    </div>
+</section>
+
+<footer>
+    <p>&copy; 2025 Recipe App</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact | Portfolio</title>
+  <link rel="icon" href="images/Bk_logo.png" type="image/favicon.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Cambria, serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #e3ffe7, #f0eaff, #e1f0ff);
+      background-size: 400% 400%;
+      animation: gradientBG 12s ease infinite;
+      color: #333;
+    }
+
+    @keyframes gradientBG {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 10%;
+      background: rgba(255,255,255,0.8);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+  
+
+    .main {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 60px 20px;
+      min-height: calc(100vh - 80px);
+    }
+
+    .contact-container {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 40px 30px;
+      width: 100%;
+      max-width: 500px;
+      border-radius: 20px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      animation: fadeIn 1.2s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .profile-img {
+      width: 150px;
+      height: 150px;
+      margin: 0 auto 15px;
+      border-radius: 50%;
+      object-fit: cover;
+      box-shadow: 0 6px 16px rgba(123, 97, 255, 0.3);
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      font-size: 26px;
+      color: #333;
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .input-group {
+      position: relative;
+    }
+
+    .input-group i {
+      position: absolute;
+      top: 50%;
+      left: 14px;
+      transform: translateY(-50%);
+      color: #666;
+      font-size: 16px;
+    }
+
+    .input-group input,
+    .input-group textarea {
+      width: 100%;
+      padding: 12px 12px 12px 42px;
+      font-size: 15px;
+      border: 1px solid #ccc;
+      border-radius: 12px;
+      outline: none;
+      background: #fdfdfd;
+      transition: border 0.3s, box-shadow 0.3s;
+    }
+
+    .input-group input:focus,
+    .input-group textarea:focus {
+      border-color: #dfdcee;
+      box-shadow: 0 0 8px rgba(186, 181, 212, 0.3);
+    }
+
+    .input-group textarea {
+      resize: none;
+      height: 120px;
+    }
+
+    button {
+      background: linear-gradient(135deg, #b2adc7);
+      color: #110303;
+      padding: 16px;
+      font-size: 18px;
+      font-weight: 600;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      
+      transition: all 0.3s ease;
+    }
+
+  
+    .social-icons {
+      margin-top: 25px;
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+    }
+
+    .social-icons a {
+      color: #5f5f5f;
+      font-size: 20px;
+      transition: 0.3s;
+    }
+
+    .social-icons a:hover {
+      color: #7b61ff;
+      transform: scale(1.2);
+    }
+
+
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      nav {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .main {
+        padding: 40px 15px;
+      }
+
+      .contact-container {
+        padding: 30px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+
+  <main class="main">
+    <div class="contact-container">
+      <img src="images/About pic.jpg" alt="Profile" class="profile-img" />
+      <h2>Contact Me</h2>
+      <form class="contact-form">
+        <div class="input-group">
+          <i class="fas fa-user"></i>
+          <input type="text" placeholder="Your Name" required />
+        </div>
+        <div class="input-group">
+          <i class="fas fa-envelope"></i>
+          <input type="email" placeholder="Your Email" required />
+        </div>
+        <div class="input-group">
+          <i class="fas fa-comment"></i>
+          <textarea placeholder="Your Message" required></textarea>
+        </div>
+        <button type="submit">Send Message</button>
+      </form>
+
+      <div class="social-icons">
+        <a href="https://linkedin.com/ankithabk"><i class="fab fa-linkedin"></i></a>
+        <a href="https://github.com/ankithabk"><i class="fab fa-github"></i></a>
+        <a href="https://instagram.com/crafteddesignhub1281@letterform lab"><i class="fab fa-instagram"></i></a>
+      
+      </div>               
+    </div>
+  </main>
+
+
+</body>
+</html>

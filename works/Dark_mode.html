@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dark Mode Toggle</title>
+    <link rel="icon" href="images/Bk_logo.png" type="image/favicon.png">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      transition: all 0.3s ease;
+    }
+
+    body {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-family: Arial, sans-serif;
+      background-color: #ffffff;
+      color: #333;
+      padding: 20px;
+    }
+
+    .toggle-container {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+    }
+
+    .toggle-btn {
+      width: 60px;
+      height: 30px;
+      background: #ccc;
+      border-radius: 15px;
+      position: relative;
+    }
+
+    .toggle-circle {
+      width: 24px;
+      height: 24px;
+      background: white;
+      border-radius: 50%;
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      transition: transform 0.3s ease;
+    }
+
+    .dark-mode .toggle-btn {
+      background: #333;
+    }
+
+    .dark-mode .toggle-circle {
+      transform: translateX(30px);
+    }
+
+    .dark-mode {
+      background-color: #121212;
+      color: white;
+    }
+
+    .content {
+      max-width: 800px;
+      text-align: center;
+      margin-top: 300px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+    }
+
+    ul {
+      text-align: left;
+      list-style-type: square;
+      font-size: 1.1rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="toggle-container" onclick="toggleMode()">
+    <span>🌞</span>
+    <div class="toggle-btn">
+      <div class="toggle-circle"></div>
+    </div>
+    <span>🌜</span>
+  </div>
+
+  <div class="content">
+    <h1>Dark Mode & Light Mode</h1>
+    <p>Click the toggle to switch modes.</p>
+
+    <section>
+      
+      <ul>
+        <li>Modern Dark & Light Mode Toggle</li>
+        <li>Responsive and User-friendly Design</li>
+        <li>Animated Transitions</li>
+        <li>Minimalist UI</li>
+        <li>Easy to Integrate</li>
+      </ul>
+    </section>
+  </div>
+
+  <script>
+    function toggleMode() {
+      document.body.classList.toggle('dark-mode');
+    }
+  </script>
+</body>
+</html>

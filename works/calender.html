@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Interactive 3D Calendar</title>
+  <link rel="icon" href="images/Bk_logo.png" type="image/favicon.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Cambria, serif;
+      background: linear-gradient(135deg, #f7f8fc, #e3f2fd);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background: #50777c;
+      color: white;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+  
+
+    main {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 40px 20px;
+    }
+
+    .calendar-container {
+      width: 100%;
+      max-width: 500px;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      background: white;
+    }
+
+    .calendar {
+      display: flex;
+      flex-direction: column;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: slideUp 0.6s forwards;
+    }
+
+    @keyframes slideUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .header {
+      background-color: #85b4bc;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 1rem;
+    }
+
+    .month {
+      font-weight: bold;
+    }
+
+    .icons {
+      display: flex;
+      gap: 15px;
+    }
+
+    .icons i {
+      cursor: pointer;
+      font-size: 1.5rem;
+      transition: transform 0.2s ease;
+    }
+
+    .icons i:hover {
+      transform: scale(1.2);
+    }
+
+    .days {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 0 0 12px 12px;
+    }
+
+    .days div {
+      padding: 10px;
+      text-align: center;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: transform 0.2s, background-color 0.2s;
+    }
+
+    .days div:hover {
+      transform: scale(1.1);
+      background-color: #5f6368;
+      color: white;
+    }
+
+    .days div.active {
+      background-color: #2575fc;
+      color: white;
+    }
+
+  
+    @media (max-width: 600px) {
+      header {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+      }
+
+      .icons i {
+        font-size: 1.2rem;
+      }
+
+      .days div {
+        font-size: 0.9rem;
+        padding: 8px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+
+
+  <!-- Main Calendar -->
+  <main>
+    <div class="calendar-container">
+      <div class="calendar">
+        <div class="header">
+          <div class="month" id="month-name">January 2025</div>
+          <div class="icons">
+            <i class="fas fa-chevron-left prev" onclick="changeMonth(-1)"></i>
+            <i class="fas fa-chevron-right next" onclick="changeMonth(1)"></i>
+          </div>
+        </div>
+        <div class="days" id="calendar-days">
+          <!-- Weekdays and days injected by JS -->
+        </div>
+      </div>
+    </div>
+  </main>
+ 
+
+  <!-- Script -->
+  <script>
+    let currentMonth = new Date().getMonth();
+    let currentYear = new Date().getFullYear();
+    const calendarDaysContainer = document.getElementById('calendar-days');
+    const monthName = document.getElementById('month-name');
+
+    function renderCalendar() {
+      calendarDaysContainer.innerHTML = `
+        <div>Sun</div>
+        <div>Mon</div>
+        <div>Tue</div>
+        <div>Wed</div>
+        <div>Thu</div>
+        <div>Fri</div>
+        <div>Sat</div>
+      `;
+
+      const firstDay = new Date(currentYear, currentMonth).getDay();
+      const lastDate = new Date(currentYear, currentMonth + 1, 0).getDate();
+      const prevMonthLastDate = new Date(currentYear, currentMonth, 0).getDate();
+
+      for (let i = firstDay - 1; i >= 0; i--) {
+        calendarDaysContainer.innerHTML += `<div class="empty-day" style="color: #ccc;">${prevMonthLastDate - i}</div>`;
+      }
+
+      for (let day = 1; day <= lastDate; day++) {
+        calendarDaysContainer.innerHTML += `<div class="day" onclick="selectDay(${day})">${day}</div>`;
+      }
+
+      monthName.textContent = `${new Date(currentYear, currentMonth).toLocaleString('default', { month: 'long' })} ${currentYear}`;
+    }
+
+    function selectDay(day) {
+      const allDays = document.querySelectorAll('.day');
+      allDays.forEach(dayEl => dayEl.classList.remove('active'));
+      const selectedDay = [...allDays].find(el => el.textContent == day);
+      if (selectedDay) selectedDay.classList.add('active');
+    }
+
+    function changeMonth(offset) {
+      currentMonth += offset;
+      if (currentMonth < 0) {
+        currentMonth = 11;
+        currentYear--;
+      } else if (currentMonth > 11) {
+        currentMonth = 0;
+        currentYear++;
+      }
+      renderCalendar();
+    }
+
+    renderCalendar();
+  </script>
+
+</body>
+</html>

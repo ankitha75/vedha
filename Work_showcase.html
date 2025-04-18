@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="images/Bk_logo.png" type="image/png" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+  <title>Premium Work Showcase</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: cambria;
+      background: #f0f4f8;
+      color: #333;
+      scroll-behavior: smooth;
+    }
+
+    h1, h2, p {
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 3.5rem;
+      margin-top: 10px;
+      color: #1a1a40;
+      opacity: 0;
+      transform: translateY(50px);
+      animation: fadeInUp 1.5s forwards;
+    }
+
+    h2 {
+      font-size: 2.5rem;
+      color: #f39c12;
+    }
+
+    p {
+      font-size: 1.2rem;
+      color: #555;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+   
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+     
+    }
+
+    nav .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: #1c075b;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+    }
+
+    nav ul li {
+      margin: 0 1rem;
+    }
+
+    nav ul li a {
+      color: #333;
+      text-decoration: none;
+      font-size:20px;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      transition: 0.3s;
+    }
+
+   
+    .hero {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background: linear-gradient(to bottom right, #ffffff, #dbe9f4);
+      clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+      position: relative;
+      margin-top: 70px;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      max-width: 600px;
+      margin: 1rem auto;
+      color: #444;
+    }
+
+    .cta {
+      margin-bottom: 50px;
+      padding: 1rem 2rem;
+      background: #1a1a40;
+      color: #fff;
+      font-size: 1.2rem;
+      border-radius: 50px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-right: 20px;
+    }
+
+    .cta:hover {
+      background: #000;
+      transform: scale(1.1);
+    }
+
+    .portfolio {
+      padding: 5rem 2rem;
+      background: #f9f9ff;
+    }
+
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+    }
+
+    .project-card {
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .project-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    }
+
+    .project-card-content {
+      padding: 1.5rem;
+      text-align: center;
+    }
+
+    .project-card-content h3 {
+      font-size: 1.4rem;
+      margin-bottom: 0.5rem;
+      color: #1f1a10;
+    }
+
+    .project-card-content p {
+      font-size: 1rem;
+      color: #555;
+    }
+
+    .editor-title {
+      font-size: 20px;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: #1a1a40;
+    }
+
+    .learn-more-btn {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 12px 30px;
+      background: #f6e0a3;
+      color: #0f0868;
+      font-size: 16px;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      text-decoration: none;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .learn-more-btn::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      border-radius: 50px;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: 0.4s ease;
+      z-index: 0;
+    }
+
+    .learn-more-btn span {
+      position: relative;
+      z-index: 1;
+      transition: color 0.4s ease;
+    }
+
+    .learn-more-btn:hover::before {
+      transform: scaleX(1);
+    }
+
+    .learn-more-btn:hover span {
+      color: #150404;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      background: #eee;
+      color: #444;
+    }
+
+    footer a {
+      color: #f39c12;
+      text-decoration: none;
+    }
+
+    .fa-solid {
+      margin-right: 10px;
+    }
+
+    @keyframes fadeInUp {
+      0% {
+        opacity: 0;
+        transform: translateY(50px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="logo">My Portfolio</div>
+    <ul>
+      <li><a href="#hero"><i class="fa-solid fa-house"></i> Home</a></li>
+      <li><a href="#portfolio"><i class="fa-solid fa-list-check"></i> Projects</a></li>
+      <li><a href="Contact_Me.html"><i class="fa-solid fa-phone"></i> Contact</a></li>
+    </ul>
+  </nav>
+
+  <section id="hero" class="hero">
+    <div>
+      <h1>Welcome to My Portfolio</h1>
+      <p>Discover projects crafted with passion and precision. I specialize in creating dynamic, visually appealing designs that enhance user experiences.</p>
+    </div>
+  </section>
+
+  <section id="portfolio" class="portfolio">
+    <h2>My Projects</h2>
+    <div class="projects">
+      <!-- Card 1 -->
+      <div class="project-card">
+        <div class="project-card-content">
+          <h3>Project 1</h3>
+          <h2 class="editor-title">3D Image Editor</h2>
+          <p>A brief description of this amazing project.And viewing</p>
+          <a href="works/3D_Image_Editor.html" class="learn-more-btn"><span>Learn More</span></a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-card-content">
+          <h3>Project 2</h3>
+          <h2 class="editor-title">AI Powered Chatbot</h2>
+          <p>The future of support is here — fast, friendly, and AI-powered.</p>
+          <a href="works/AI_Powered_Chatbot.html" class="learn-more-btn"><span>Learn More</span></a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-card-content">
+          <h3>Project 3</h3>
+          <h2 class="editor-title">Dark Mode to Light Mode</h2>
+          <p>Switch between dark mode and light mode for comfortable viewing.</p>
+          <a href="works/Dark_mode.html" class="learn-more-btn"><span>Learn More</span></a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-card-content">
+          <h3>Project 4</h3>
+          <h2 class="editor-title">Calculator</h2>
+          <p>A calculator helps you quickly solve basic math problems.</p>
+          <a href="works/Calculator_website.html" class="learn-more-btn"><span>Learn More</span></a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-card-content">
+          <h3>Project 5</h3>
+          <h2 class="editor-title">Calendars</h2>
+          <p>A calendar helps you keep track of dates, events, and appointments.</p>
+          <a href="works/calender.html" class="learn-more-btn"><span>Learn More</span></a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-card-content">
+          <h3>Project 6</h3>
+          <h2 class="editor-title">Linebar Chart Generator</h2>
+          <p>Create clear and interactive line and bar charts in seconds.</p>
+          <a href="works/Line_bar_chart_generator.html" class="learn-more-btn"><span>Learn More</span></a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-card-content">
+          <h3>Project 7</h3>
+          <h2 class="editor-title">Recipe App</h2>
+          <p>Discover and cook delicious recipes anytime, anywhere.</p>
+          <a href="works/Recipe_app.html" class="learn-more-btn"><span>Learn More</span></a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-card-content">
+          <h3>Project 8</h3>
+          <h2 class="editor-title">Temperature Converter</h2>
+          <p>Quickly convert between Celsius, Fahrenheit, and Kelvin.</p>
+          <a href="works/Temperature_Converter.html" class="learn-more-btn"><span>Learn More</span></a>
+        </div>
+      </div>
+
+   <div class="project-card">
+        <div class="project-card-content">
+          <h3>Project 8</h3>
+          <h2 class="editor-title">weather App</h2>
+          <p>Quickly convert between Celsius, Fahrenheit, and Kelvin.</p>
+          <a href="works/Weather_website.html" class="learn-more-btn"><span>Learn More</span></a>
+        </div>
+      </div>
+
+
+  <div class="project-card">
+        <div class="project-card-content">
+          <h3>Project 8</h3>
+          <h2 class="editor-title">Url Shortener</h2>
+          <p>Quickly convert between Celsius, Fahrenheit, and Kelvin.</p>
+          <a href="works/url_shortener.html" class="learn-more-btn"><span>Learn More</span></a>
+        </div>
+      </div>
+
+
+  <div class="project-card">
+        <div class="project-card-content">
+          <h3>Project 8</h3>
+          <h2 class="editor-title">Student Grades Analyzer</h2>
+          <p>Quickly convert between Celsius, Fahrenheit, and Kelvin.</p>
+          <a href="works/Quiz_app.html" class="learn-more-btn"><span>Learn More</span></a>
+        </div>
+      </div>
+
+
+  <div class="project-card">
+        <div class="project-card-content">
+          <h3>Project 8</h3>
+          <h2 class="editor-title">weather App</h2>
+          <p>Quickly convert between Celsius, Fahrenheit, and Kelvin.</p>
+          <a href="works/Weather_website.html" class="learn-more-btn"><span>Learn More</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>Crafted with ❤️ by <a href="#">Ankitha B.K</a> &copy; 2025</p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Dynamic URL Shortener</title>
+         <link rel="icon" href="images/Bk_logo.png" type="image/favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family:cambria;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+             background: linear-gradient(135deg, #b4eded, #a1afc7);
+            color: rgb(88, 3, 83);
+            overflow: hidden;
+        }
+
+    
+      .container {
+            text-align: center;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            transform: perspective(800px) rotateX(15deg);
+            backdrop-filter: blur(10px);
+            width: 90%;
+            max-width: 500px;
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
+        }
+
+        .container:hover {
+            transform: perspective(800px) rotateX(0deg);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            font-size: 2rem;
+            letter-spacing: 2px;
+            text-shadow: 0 3px 6px rgba(0, 0, 0, 0.4);
+            animation: textGlow 2s infinite alternate;
+        }
+
+        @keyframes textGlow {
+            0% {
+                text-shadow: 0 3px 6px rgba(0, 0, 0, 0.4);
+            }
+            100% {
+                text-shadow: 0 3px 12px rgba(255, 255, 255, 0.8);
+            }
+        }
+
+        .input-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .input-container input {
+            padding: 10px;
+            font-size: 1rem;
+            border: none;
+            outline: none;
+            border-radius: 5px;
+            flex: 1;
+            margin-right: 10px;
+            transition: box-shadow 0.3s ease;
+        }
+
+        .input-container input:focus {
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+        }
+
+        .input-container button {
+            padding: 10px 20px;
+            background: #2575fc;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+
+        .input-container button:hover {
+            transform: scale(1.1);
+            background: #ff6a00;
+        }
+
+        .short-url {
+            margin-top: 20px;
+            font-size: 1.2rem;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+            word-break: break-all;
+            animation: fadeIn 1s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .icons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .icons a {
+            text-decoration: none;
+            color: white;
+            font-size: 2rem;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease, background 0.3s ease, color 0.3s ease;
+        }
+
+        .icons a:hover {
+            transform: rotate(360deg) scale(1.2);
+            color: #ff6a00;
+            background: rgba(255, 255, 255, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>URL Shortener</h1>
+        <div class="input-container">
+            <input type="text" id="url-input" placeholder="Enter your URL here">
+            <button id="shorten-btn">Shorten</button>
+        </div>
+        <div id="output" class="short-url"></div>
+        <div class="icons">
+            <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+            <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin"></i></a>
+        </div>
+    </div>
+
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script>
+        document.getElementById('shorten-btn').addEventListener('click', () => {
+            const urlInput = document.getElementById('url-input').value;
+            const outputDiv = document.getElementById('output');
+
+            if (urlInput) {
+                const fakeShortUrl = `https://short.url/${Math.random().toString(36).substr(2, 8)}`;
+                outputDiv.innerHTML = `Shortened URL: <a href="${fakeShortUrl}" target="_blank">${fakeShortUrl}</a>`;
+            } else {
+                outputDiv.textContent = 'Please enter a valid URL!';
+            }
+        });
+    </script>
+</body>
+</html>

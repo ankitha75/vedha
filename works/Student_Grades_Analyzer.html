@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Grades Analyzer</title>
+ <link rel="icon" href="images/Bk_logo.png" type="image/favicon.png">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family:Cambria;
+      background: linear-gradient(135deg, #b4eded, #a1afc7);
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 30px;
+    
+    }
+
+    .header h1 {
+      font-size: 2.5rem;
+      margin: 0;
+         color: #1c0b0b;
+    }
+
+    .header p {
+      font-size: 1.2rem;
+      margin: 5px 0;
+      color: #261b2b;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      width: 100%;
+      max-width: 1200px;
+    }
+
+    .card {
+      background: #2a5298;
+      border-radius: 12px;
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+      padding: 20px;
+      text-align: center;
+      transform: perspective(800px) rotateX(0deg);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: perspective(800px) rotateX(10deg);
+      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.5);
+    }
+
+    .card h2 {
+      font-size: 1.5rem;
+      margin: 0 0 10px;
+    }
+
+    .card p {
+      font-size: 1rem;
+      margin: 5px 0;
+    }
+
+    .icon {
+      font-size: 3rem;
+      margin-bottom: 10px;
+    }
+
+    .table-section {
+      margin-top: 30px;
+      background: #ffffff10;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+      width: 100%;
+      max-width: 1200px;
+    }
+
+    .table-section h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #fff;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      color: #fff;
+      background: linear-gradient(to right, #2a5298, #1e3c72);
+    }
+
+    table th, table td {
+      padding: 12px;
+      text-align: center;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    table th {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    table tr:hover {
+      background: rgba(127, 7, 7, 0.1);
+      transform: scale(1);
+    }
+
+    .chart {
+      background: #fff;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+      margin-top: 20px;
+    }
+
+    .chart canvas {
+      width: 100%;
+      max-width: 600px;
+    }
+
+    @media (max-width: 768px) {
+      .header h1 {
+        font-size: 2rem;
+      }
+
+      .card {
+        padding: 15px;
+      }
+
+      .icon {
+        font-size: 2.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>Student Grades Analyzer</h1>
+      <p>Analyze grades, trends, and performance in one place.</p>
+    </div>
+
+    <div class="cards">
+      <div class="card">
+        <div class="icon">📊</div>
+        <h2>Overall Performance</h2>
+        <p>Analyze average scores and trends.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">📈</div>
+        <h2>Grade Trends</h2>
+        <p>View grade improvements over time.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">📝</div>
+        <h2>Individual Reports</h2>
+        <p>Detailed student-specific analysis.</p>
+      </div>
+    </div>
+
+    <div class="table-section">
+      <h2>Student Grades</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Math</th>
+            <th>Science</th>
+            <th>History</th>
+            <th>English</th>
+            <th>Arts</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Amrutha</td>
+            <td>85</td>
+            <td>90</td>
+            <td>78</td>
+            <td>88</td>
+            <td>92</td>
+          </tr>
+          <tr>
+            <td>Akhila</td>
+            <td>92</td>
+            <td>89</td>
+            <td>84</td>
+            <td>91</td>
+            <td>87</td>
+          </tr>
+          <tr>
+            <td>Abhishek</td>
+            <td>80</td>
+            <td>85</td>
+            <td>75</td>
+            <td>82</td>
+            <td>90</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="chart">
+      <canvas id="gradeChart"></canvas>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    const ctx = document.getElementById('gradeChart').getContext('2d');
+    const gradeChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Math', 'Science', 'History', 'English', 'Arts'],
+        datasets: [{
+          label: 'Average Grades',
+          data: [85, 90, 78, 88, 92],
+          backgroundColor: [
+            'rgba(255, 99, 132, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(255, 206, 86, 0.2)',
+            'rgba(75, 192, 192, 0.2)',
+            'rgba(153, 102, 255, 0.2)'
+          ],
+          borderColor: [
+            'rgba(255, 99, 132, 1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(255, 206, 86, 1)',
+            'rgba(75, 192, 192, 1)',
+            'rgba(153, 102, 255, 1)'
+          ],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+  </script
+
+  </script>
+</body>
+</html>
